@@ -32,6 +32,9 @@
 !.zlogin
 !.zlogout
 
+# powerlevel10k configuration
+!.p10k.zsh
+
 # SSH Config
 !.ssh/config
 
