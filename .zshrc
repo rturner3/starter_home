@@ -125,10 +125,10 @@ source $ZSH/oh-my-zsh.sh
 eval "$(direnv hook zsh)"
 PATH=~/go/bin:$PATH
 
-source /opt/homebrew/share/zsh/site-functions
+[[ ! -f /opt/homebrew/share/zsh/site-functions ]] || source /opt/homebrew/share/zsh/site-functions
 fpath[1,0]=~/.zsh/completion
-mkdir -p ~/.zsh/completion
-cp /opt/homebrew/share/zsh/site-functions/_bazel ~/.zsh/completion
+[[ -d ~/.zsh/completion ]] || mkdir -p ~/.zsh/completion
+[[ ! -f /opt/homebrew/share/zsh/site-functions ]] || cp /opt/homebrew/share/zsh/site-functions/_bazel ~/.zsh/completion
 
 # This way the completion script does not have to parse Bazel's options
 # repeatedly.  The directory in cache-path must be created manually.
