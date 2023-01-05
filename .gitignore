@@ -1,0 +1,56 @@
+# Ignore everything by default...
+/*
+# ...then whitelist anything that we want to track. Starting of course with
+# this file and other git meta data (e.g. for git-submodule):
+!.gitignore
+!.gitmodules
+
+# XDG home, allow further whitelisting
+!/.config
+/.config/*
+!/.config/flake8
+
+# File types that need to be ignored anywhere:
+.DS_Store
+.*.sw?
+# TODO: incomplete, needs more?
+
+# ~/bins is a good place for random utility scripts; see bin/.gitignore.
+!bin/
+
+# Common shell environment and configuration
+!.profile
+!.profile.d/
+.profile.d/tokens
+!.aliases
+!.dircolors/
+!.inputrc
+
+# Zsh configuration
+!.zsh/
+!.zshrc
+!.zlogin
+!.zlogout
+
+# SSH Config
+!.ssh/config
+
+# TMux config
+!.tmux*.conf
+
+# NeoVim Config
+!/.config/nvim
+.config/nvim/*
+!/.config/nvim/init.lua
+
+# Vim Config
+!.vimrc
+!/.vim
+/.vim/*
+!/.vim/snippets
+
+!.xinitrc
+!.xsession
+!.Xresources
+!.screenrc
+!.terminfo.src/
