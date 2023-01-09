@@ -57,10 +57,10 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.o.number = true
 vim.o.laststatus = 2
-vim.o.tabtstop = 4
+vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
-vim.o.tabstop = true
+vim.o.expandtab = true
 
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger  ="<c-b>"
