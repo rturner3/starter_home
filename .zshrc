@@ -125,7 +125,8 @@ export EDITOR='nvim'
 [[ ! -f ~/.aliases ]] || source ~/.aliases
 [[ ! -f ~/.private-aliases ]] || source ~/.private-aliases
 eval "$(direnv hook zsh)"
-PATH=~/go/bin:$PATH
+export PATH=~/go/bin:$PATH
+export PATH=~/bin:$PATH
 
 [[ ! -f /opt/homebrew/share/zsh/site-functions ]] || source /opt/homebrew/share/zsh/site-functions
 fpath[1,0]=~/.zsh/completion
