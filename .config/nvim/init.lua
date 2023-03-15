@@ -5,6 +5,7 @@ end
 
 local opts = { noremap=true, silent=true }
 
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -66,7 +67,8 @@ vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger  ="<c-b>"
 vim.g.UltiSnipsJumpBackwardTrigger = "c-z>"
 vim.g.UltiSnipsEditSplit = "vertical"
-vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
+-- FIXME: Uncomment this and set to the path to python3
+-- vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 -- Set up nvim-cmp.
 local cmp = require'cmp'
