@@ -24,6 +24,11 @@ require('lspconfig').gopls.setup {
             -- Don't spam LSP with changes. Wait a second between each.
             debounce_text_changes = 1000,
         },
+    settings = {
+        gopls = {
+            gofumpt = true
+        }
+    },
 	capabilities = lsp_capabilities,
 	init_options = {
 	    gofumpt = true,
@@ -39,10 +44,11 @@ function FormatAndImports(wait_ms)
     local params = vim.lsp.util.make_range_params()
     params.context = {only = {"source.organizeImports"}}
     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-    for _, res in pairs(result or {}) do
+    for cid, res in pairs(result or {}) do
         for _, r in pairs(res.result or {}) do
             if r.edit then
-                vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+                local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                vim.lsp.util.apply_workspace_edit(r.edit, enc)
             else
                 vim.lsp.buf.execute_command(r.command)
             end
@@ -133,12 +139,12 @@ require('lualine').setup {
 
 -- Treesitter syntax highlighting looks horrible right now
 -- Try this out again later when things are more stable
---  require'nvim-treesitter.configs'.setup{
---    ensure_installed = { "go", "lua" },
---    highlight = {
---      enable = true,
---    },
---  }
+  require'nvim-treesitter.configs'.setup{
+    ensure_installed = { "go", "lua" },
+    highlight = {
+      enable = true,
+    },
+  }
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -150,3 +156,6 @@ vim.keymap.set('n', '<leader>n', vim.diagnostic.goto_next, {})
 vim.keymap.set('n', '<leader>p', vim.diagnostic.goto_prev, {})
 
 require"fidget".setup{}
+
+vim.g.material_style = "darker"
+vim.cmd 'colorscheme material'

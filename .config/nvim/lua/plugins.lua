@@ -96,7 +96,16 @@ return require('packer').startup(function(use)
 
   use 'NLKNguyen/papercolor-theme'
   use 'marko-cerovac/material.nvim'
-  use 'j-hui/fidget.nvim'
+
+  use {
+    'j-hui/fidget.nvim',
+    tag = 'legacy',
+    config = function()
+      require("fidget").setup {
+        -- options
+      }
+    end,
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
